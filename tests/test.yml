@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - pix4dmapper
+    - ../pix4dmapper
