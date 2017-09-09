@@ -1,6 +1,6 @@
-# Pix4Dmapper
+# Pix4Dmapper Ansible role
 
-This role installs Pix4D Mapper
+This Ansible role installs Pix4D Mapper
 
 [Pix4Dmapper](https://pix4d.com/product/pix4dmapper/) is a photogrammetry software for professional drone-based mapping.
 
