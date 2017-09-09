@@ -1,0 +1,28 @@
+---
+
+- name: Ensure beineri is on apt repository
+  apt_repository: repo=ppa:beineri/opt-qt562-xenial
+  # TODO: test with ubuntu 14.04 and debian
+
+- name: Update packages
+  apt:
+    upgrade: dist
+    update_cache: yes
+
+- name: Check Pix4D installation version
+  command: dpkg-query --show pix4dmapper
+  register: pix4d_check
+  ignore_errors: yes
+
+- name: Download Pix4D
+  get_url:
+    url: "https://cloud.pix4d.com/download/pix4d_mapper/{{ pix4dmapper_version }}/linux/"
+    dest: "/tmp/pix4dmapper_{{ pix4dmapper_version }}_amd64.deb"
+  when: pix4d_check.stdout != 'pix4dmapper\t' + pix4dmapper_version
+
+- name: Install Pix4D
+  apt: "deb=/tmp/pix4dmapper_{{ pix4dmapper_version }}_amd64.deb install_recommends=yes"
+  when: pix4d_check.stdout != 'pix4dmapper\t' + pix4dmapper_version
+
+- name: Remove Pix4D installation file
+  file: "path=/tmp/pix4dmapper_{{ pix4dmapper_version }}_amd64.deb state=absent"
