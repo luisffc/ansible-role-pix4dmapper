@@ -2,7 +2,7 @@ galaxy_info:
   author: Luis Cavalcante
   description: Pix4Dmapper is a photogrammetry software for professional drone-based mapping.
 
-  licence: BSD
+  license: BSD
 
   min_ansible_version: 1.3
 
