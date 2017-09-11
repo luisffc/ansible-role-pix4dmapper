@@ -2,7 +2,13 @@
 
 - name: Ensure beineri is on apt repository
   apt_repository: repo=ppa:beineri/opt-qt562-xenial
-  # TODO: test with ubuntu 14.04 and debian
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '16.04'
+
+- name: Ensure beineri is on apt repository
+  apt_repository: repo=ppa:beineri/opt-qt562-trusty
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '14.04'
+
+  # TODO: Add support to debian
 
 - name: Update packages
   apt:
